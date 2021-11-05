@@ -49,7 +49,6 @@ export class Router {
    *                              'popstate' event instead of a normal card click
    */
   navigate(page, statePopped) {
-
     if(!this[page]){
       console.log("ERROR: Function does not exist");
       return;
@@ -61,18 +60,17 @@ export class Router {
     else{
       hash = `#${page}`;
     }
-    console.log(hash);
-    //???
-    if(statePopped == false && window.location.hash != hash){
-      const state  = {'page': curr};
-      const title = ' ';
-      const url = window.location + hash;
-
+    if(!statePopped && window.location.hash != hash){
+      const state  = {'page': page};
+      const title = '';
+      const url = window.location.origin + hash;
+      
       history.pushState(state,title,url);
     }
 
-    this[page];
+    this[page]();
     console.log(`navigate() function called, requested page: ${page}`);
+    
     /**
      * TODO - Part 1 - Step 4
      * Now, we are going to call the functions that we stored earlier based on 
