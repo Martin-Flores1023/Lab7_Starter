@@ -38,6 +38,7 @@ export class Router {
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
+    this[page] = pageFunc;
   }
 
   /**
@@ -48,6 +49,29 @@ export class Router {
    *                              'popstate' event instead of a normal card click
    */
   navigate(page, statePopped) {
+
+    if(!this[page]){
+      console.log("ERROR: Function does not exist");
+      return;
+    }
+    var hash;
+    if(page == 'home'){
+      hash = "";
+    }
+    else{
+      hash = `#${page}`;
+    }
+    console.log(hash);
+    //???
+    if(statePopped == false && window.location.hash != hash){
+      const state  = {'page': curr};
+      const title = ' ';
+      const url = window.location + hash;
+
+      history.pushState(state,title,url);
+    }
+
+    this[page];
     console.log(`navigate() function called, requested page: ${page}`);
     /**
      * TODO - Part 1 - Step 4
