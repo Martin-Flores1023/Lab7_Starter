@@ -101,7 +101,7 @@ async function fetchRecipes() {
  * appends them to the page
  */
 function createRecipeCards() {
-  for(var i = 0; i < recipes.length; i++){
+  for(let i = 0; i < recipes.length; i++){
 
   // Makes a new recipe card
   const recipeCard = document.createElement('recipe-card');
@@ -217,7 +217,6 @@ function bindPopstate() {
    */
    window.addEventListener('popstate', function(e){
     if(e.state){
-      console.log(e.state.page);
       router.navigate(e.state.page, true);
     }
     else{
