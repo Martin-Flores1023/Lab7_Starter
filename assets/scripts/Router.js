@@ -49,6 +49,7 @@ export class Router {
    *                              'popstate' event instead of a normal card click
    */
   navigate(page, statePopped) {
+    console.log("navigate function");
     if(!this[page]){
       console.log("ERROR: Function does not exist");
       return;
@@ -67,8 +68,9 @@ export class Router {
       
       history.pushState(state,title,url);
     }
-
+    console.log("Function for page: " + this[page]);
     this[page]();
+    
     console.log(`navigate() function called, requested page: ${page}`);
     
     /**
